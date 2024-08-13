@@ -630,22 +630,21 @@ extension SettingsViewController
                     }
                     
                     alertController.addAction(UIAlertAction(title: NSLocalizedString("Server Address", comment: ""), style: .destructive){ _ in
-                        let alertController = UIAlertController(title: "SideJITServer Address", message: "Please Enter the SideJITServer Address Below.", preferredStyle: .alert)
+                        let alertController = UIAlertController(title: "SideJITServer Address", message: "Please Enter the SideJITServer Address Below. (this is not needed if SideJITServer has already been detected)", preferredStyle: .alert)
                         
-                        // Add a text field to the alert controller
+
                         alertController.addTextField { textField in
                             textField.placeholder = "SideJITServer Address"
                         }
                         
-                        // Add a "Cancel" action
+                        
                         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
                         alertController.addAction(cancelAction)
                         
-                        // Add an "OK" action
+
                         let okAction = UIAlertAction(title: "OK", style: .default) { _ in
-                            // Handle the text input
                             if let text = alertController.textFields?.first?.text {
-                                print("User entered: \(text)")
+                                UserDefaults.standard.textInputSideJITServerurl = text
                             }
                         }
                         
@@ -663,7 +662,7 @@ extension SettingsViewController
                             SJSURL = "http://sidejitserver._http._tcp.local:8080"
                          } else {
                             SJSURL = UserDefaults.standard.textInputSideJITServerurl ?? ""
-                         }  // replace with your URL
+                         }
                         
                           
                          let url = URL(string: SJSURL + "/re/")!
