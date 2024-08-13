@@ -630,27 +630,28 @@ extension SettingsViewController
                     }
                     
                     alertController.addAction(UIAlertAction(title: NSLocalizedString("Server Address", comment: ""), style: .default){ _ in
-                        let alertController = UIAlertController(title: "SideJITServer Address", message: "Please Enter the SideJITServer Address Below. (this is not needed if SideJITServer has already been detected)", preferredStyle: .alert)
+                        let alertController1 = UIAlertController(title: "SideJITServer Address", message: "Please Enter the SideJITServer Address Below. (this is not needed if SideJITServer has already been detected)", preferredStyle: .alert)
                         
 
-                        alertController.addTextField { textField in
+                        alertController1.addTextField { textField in
                             textField.placeholder = "SideJITServer Address"
                         }
                         
                         
                         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-                        alertController.addAction(cancelAction)
+                        alertController1.addAction(cancelAction)
                         
 
                         let okAction = UIAlertAction(title: "OK", style: .default) { _ in
-                            if let text = alertController.textFields?.first?.text {
+                            if let text = alertController1.textFields?.first?.text {
                                 UserDefaults.standard.textInputSideJITServerurl = text
+                            }
                         }
                         
-                        alertController.addAction(okAction)
+                        alertController1.addAction(okAction)
                         
                         // Present the alert controller
-                        self.present(alertController, animated: true)
+                        self.present(alertController1, animated: true)
                     })
                     
 
@@ -679,7 +680,8 @@ extension SettingsViewController
                    })
                     
 
-                   alertController.addAction(.cancel)
+                   let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                   alertController.addAction(cancelAction)
                    //Fix crash on iPad
                    alertController.popoverPresentationController?.sourceView = self.tableView
                    alertController.popoverPresentationController?.sourceRect = self.tableView.rectForRow(at: indexPath)
