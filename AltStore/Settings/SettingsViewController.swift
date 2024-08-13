@@ -629,7 +629,7 @@ extension SettingsViewController
                         })
                     }
                     
-                    alertController.addAction(UIAlertAction(title: NSLocalizedString("Server Address", comment: ""), style: .destructive){ _ in
+                    alertController.addAction(UIAlertAction(title: NSLocalizedString("Server Address", comment: ""), style: .default){ _ in
                         let alertController = UIAlertController(title: "SideJITServer Address", message: "Please Enter the SideJITServer Address Below. (this is not needed if SideJITServer has already been detected)", preferredStyle: .alert)
                         
 
