@@ -1321,7 +1321,7 @@ private extension MyAppsViewController
     {
         guard minimuxerStatus else { return }
 
-        if #available(iOS 17, *) {
+        if #available(iOS 17, *), !UserDefaults.standard.sidejitenable {
             ToastView(error: (OperationError.tooNewError as NSError).withLocalizedTitle("No iOS 17 On Device JIT!"), opensLog: true).show(in: self)
             AppManager.shared.log(OperationError.tooNewError, operation: .enableJIT, app: installedApp)
             return
