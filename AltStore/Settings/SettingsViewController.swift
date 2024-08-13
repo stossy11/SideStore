@@ -644,7 +644,7 @@ extension SettingsViewController
 
                         let okAction = UIAlertAction(title: "OK", style: .default) { _ in
                             if let text = alertController.textFields?.first?.text {
-                                if let url = UserDefaults.standard.textInputSideJITServerurl, (url ?? "").isEmpty {
+                                if (UserDefaults.standard.textInputSideJITServerurl ?? "").isEmpty {
                                     let alertController2 = UIAlertController(title: "SideJITServer Address", message: "SideJITServer Address has already been set, this will overwrite it. Are you sure you want to continue?", preferredStyle: .alert)
                                     
                                     
