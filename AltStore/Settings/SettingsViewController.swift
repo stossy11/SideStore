@@ -587,28 +587,57 @@ extension SettingsViewController
             switch row
             {
             case .sendFeedback:
-                if MFMailComposeViewController.canSendMail()
-                {
-                    let mailViewController = MFMailComposeViewController()
-                    mailViewController.mailComposeDelegate = self
-                    mailViewController.setToRecipients(["support@sidestore.io"])
-                    
-                    if let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
-                    {
-                        mailViewController.setSubject("SideStore Beta \(version) Feedback")
+                let alertController = UIAlertController(title: "Send Feedback", message: "Choose a method to send feedback:", preferredStyle: .actionSheet)
+                
+                // Option 1: GitHub
+                alertController.addAction(UIAlertAction(title: "GitHub", style: .default) { _ in
+                    if let githubURL = URL(string: "https://github.com/SideStore/SideStore/issues") {
+                        let safariViewController = SFSafariViewController(url: githubURL)
+                        safariViewController.preferredControlTintColor = .altPrimary
+                        self.present(safariViewController, animated: true, completion: nil)
                     }
-                    else
-                    {
-                        mailViewController.setSubject("SideStore Beta Feedback")
+                })
+                
+                // Option 2: Discord
+                alertController.addAction(UIAlertAction(title: "Discord", style: .default) { _ in
+                    if let discordURL = URL(string: "https://discord.gg/sidestore-949183273383395328") {
+                        let safariViewController = SFSafariViewController(url: discordURL)
+                        safariViewController.preferredControlTintColor = .altPrimary
+                        self.present(safariViewController, animated: true, completion: nil)
                     }
-                    
-                    self.present(mailViewController, animated: true, completion: nil)
+                })
+                
+                // Option 3: Mail
+//                alertController.addAction(UIAlertAction(title: "Send Email", style: .default) { _ in
+//                    if MFMailComposeViewController.canSendMail() {
+//                        let mailViewController = MFMailComposeViewController()
+//                        mailViewController.mailComposeDelegate = self
+//                        mailViewController.setToRecipients(["support@sidestore.io"])
+//
+//                        if let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
+//                            mailViewController.setSubject("SideStore Beta \(version) Feedback")
+//                        } else {
+//                            mailViewController.setSubject("SideStore Beta Feedback")
+//                        }
+//
+//                       self.present(mailViewController, animated: true, completion: nil)
+//                  } else {
+//                      let toastView = ToastView(text: NSLocalizedString("Cannot Send Mail", comment: ""), detailText: nil)
+//                      toastView.show(in: self)
+//                }
+//            })
+                
+                // Cancel action
+                alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                
+                // For iPad: Set the source view if presenting on iPad to avoid crashes
+                if let popoverController = alertController.popoverPresentationController {
+                    popoverController.sourceView = self.view
+                    popoverController.sourceRect = self.view.bounds
                 }
-                else
-                {
-                    let toastView = ToastView(text: NSLocalizedString("Cannot Send Mail", comment: ""), detailText: nil)
-                    toastView.show(in: self)
-                }
+                
+                // Present the action sheet
+                self.present(alertController, animated: true, completion: nil)
                 
             case .refreshSideJITServer:
                 if #available(iOS 17, *) {
