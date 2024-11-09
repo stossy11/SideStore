@@ -3,6 +3,13 @@
 # Ensure we are in Dependencies directory
 cd "$(dirname "$0")"
 
+# Detect if Homebrew is in /opt/homebrew (Apple Silicon) or /usr/local (Intel)
+if [[ -d "/opt/homebrew" ]]; then
+    export PATH="/opt/homebrew/bin:$PATH"
+elif [[ -d "/usr/local" ]]; then
+    export PATH="/usr/local/bin:$PATH"
+fi
+
 # Check if wget and curl are installed; if not, install them via Homebrew
 if ! command -v wget &> /dev/null; then
     echo "wget not found, attempting to install via Homebrew..."
