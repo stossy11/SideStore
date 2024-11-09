@@ -263,6 +263,10 @@ extension FetchProvisioningProfilesOperation
                             {
                                 throw OperationError.maximumAppIDLimitReached(appName: application.name, requiredAppIDs: requiredAppIDs, availableAppIDs: availableAppIDs, expirationDate: expirationDate)
                             }
+                            else
+                            {
+                                throw ALTAppleAPIError(.maximumAppIDLimitReached)
+                            }
                         }
                     }
                     //App ID name must be ascii. If the name is not ascii, using bundleID instead

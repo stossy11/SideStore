@@ -105,8 +105,8 @@ private extension ErrorLogViewController
                         self?.searchFAQ(for: loggedError)
                     },
                     UIAction(title: NSLocalizedString("View More Details", comment: ""), image: UIImage(systemName: "ellipsis.circle")) { [weak self] _ in
-
-                    }
+                        self?.viewMoreDetails(for: loggedError)
+                    },
                 ])
 
                 cell.menuButton.menu = menu
