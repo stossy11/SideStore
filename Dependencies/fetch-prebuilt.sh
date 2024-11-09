@@ -3,6 +3,27 @@
 # Ensure we are in Dependencies directory
 cd "$(dirname "$0")"
 
+# Check if wget and curl are installed; if not, install them via Homebrew
+if ! command -v wget &> /dev/null; then
+    echo "wget not found, attempting to install via Homebrew..."
+    if command -v brew &> /dev/null; then
+        brew install wget
+    else
+        echo "Homebrew is not installed. Please install Homebrew and rerun the script."
+        exit 1
+    fi
+fi
+
+if ! command -v curl &> /dev/null; then
+    echo "curl not found, attempting to install via Homebrew..."
+    if command -v brew &> /dev/null; then
+        brew install curl
+    else
+        echo "Homebrew is not installed. Please install Homebrew and rerun the script."
+        exit 1
+    fi
+fi
+
 check_for_update() {
     if [ -f ".skip-prebuilt-fetch-$1" ]; then
         echo "Skipping prebuilt fetch for $1 since .skip-prebuilt-fetch-$1 exists. If you are developing $1 alongside SideStore, don't remove this file, or this script will replace your locally built binaries with the ones built by GitHub Actions."
