@@ -73,6 +73,7 @@ public extension NSError
     {
         var userInfo = self.userInfo
         userInfo[NSLocalizedDescriptionKey] = self.localizedDescription
+        userInfo[NSLocalizedFailureErrorKey] = self.localizedFailure
         userInfo[NSLocalizedFailureReasonErrorKey] = self.localizedFailureReason
         userInfo[NSLocalizedRecoverySuggestionErrorKey] = self.localizedRecoverySuggestion
         userInfo[NSDebugDescriptionErrorKey] = self.localizedDebugDescription
@@ -124,6 +125,7 @@ public extension NSError
 
         var userInfo = self.userInfo
         userInfo[NSDebugDescriptionErrorKey] = self.localizedDebugDescription
+        userInfo[NSLocalizedDescriptionKey] = self.localizedDescription
         userInfo[NSLocalizedFailureErrorKey] = self.localizedFailure
         userInfo[NSLocalizedFailureReasonErrorKey] = self.localizedFailureReason
         userInfo[NSLocalizedRecoverySuggestionErrorKey] = self.localizedRecoverySuggestion

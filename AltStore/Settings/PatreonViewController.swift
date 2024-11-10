@@ -348,7 +348,7 @@ extension PatreonViewController: UICollectionViewDelegateFlowLayout
         switch section
         {
         case .about: return .zero
-        case .patrons: return CGSize(width: 0, height: 0)
+        case .patrons: return CGSize(width: 320, height: 44)
         }
     }
 }

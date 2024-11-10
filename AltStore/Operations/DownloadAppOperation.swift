@@ -20,6 +20,7 @@ final class DownloadAppOperation: ResultOperation<ALTApplication>
 
     private let appName: String
     private let bundleIdentifier: String
+    private var sourceURL: URL?
     private let destinationURL: URL
 
     private let session = URLSession(configuration: .default)
@@ -32,6 +33,7 @@ final class DownloadAppOperation: ResultOperation<ALTApplication>
 
         self.appName = app.name
         self.bundleIdentifier = app.bundleIdentifier
+        self.sourceURL = app.url
         self.destinationURL = destinationURL
 
         super.init()
@@ -111,7 +113,7 @@ private extension DownloadAppOperation {
     }
 
     func download(@Managed _ app: AppProtocol) {
-        guard let sourceURL = $app.url else { return self.finish(.failure(OperationError.appNotFound(name: self.appName))) }
+        guard let sourceURL = self.sourceURL else { return self.finish(.failure(OperationError.appNotFound(name: self.appName))) }
 
         self.downloadIPA(from: sourceURL) { result in
             do

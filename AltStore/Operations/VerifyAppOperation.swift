@@ -116,6 +116,8 @@ final class VerifyAppOperation: ResultOperation<Void>
             {
                 throw error
             }
+            let appName = self.context.app?.name ?? NSLocalizedString("The app", comment: "")
+            self.localizedFailure = String(format: NSLocalizedString("%@ could not be installed.", comment: ""), appName)
             
             guard let app = self.context.app else {
                 throw OperationError.invalidParameters("VerifyAppOperation.main: self.context.app is nil")

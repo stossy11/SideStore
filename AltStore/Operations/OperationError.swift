@@ -78,6 +78,7 @@ extension OperationError
     static func openAppFailed(name: String?) -> OperationError {
         OperationError(code: .openAppFailed, appName: name)
     }
+    static let domain = OperationError(code: .unknown)._domain
     
     static func SideJITIssue(error: String?) -> OperationError {
         var o = OperationError(code: .SideJITIssue)
