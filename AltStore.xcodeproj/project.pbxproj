@@ -3442,7 +3442,7 @@
 /* Begin XCRemoteSwiftPackageReference section */
 		4879A95D2861046500FC1BBD /* XCRemoteSwiftPackageReference "AltSign" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SideStore/AltSign";
+			repositoryURL = "https://github.com/stossy11/AltSign";
 			requirement = {
 				branch = master;
 				kind = branch;
