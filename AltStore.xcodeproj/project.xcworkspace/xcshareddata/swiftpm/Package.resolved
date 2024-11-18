@@ -1,13 +1,13 @@
 {
-  "originHash" : "ee46302f91cbb62c5234c36750d40856658e961e191f5536cf4fe74d10fc2c94",
+  "originHash" : "ae681bf62472b4757db23e084269600526917ec735eec71f038b49d92c018635",
   "pins" : [
     {
       "identity" : "altsign",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/SideStore/AltSign",
+      "location" : "https://github.com/stossy11/AltSign",
       "state" : {
         "branch" : "master",
-        "revision" : "cc6189f0f7cd8e5bd24943af9322e0ff9420e9f4"
+        "revision" : "9cb9da27f5fd91f6062fb508bfcdd0f512ecd9a4"
       }
     },
     {
